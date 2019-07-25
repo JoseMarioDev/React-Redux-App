@@ -1,24 +1,24 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import Questions from './components/Questions';
 
 function App() {
+  const [questions, setQuestions] = useState();
+
+  useEffect(() => {
+    axios
+      .get('https://opentdb.com/api.php?amount=50&category=21')
+      .then(res => {
+        console.log('RESPONSE', res.data);
+        setQuestions(res.data.results);
+      })
+      .catch(err => console.log(err));
+  }, []);
+  console.log('setquestions', questions);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Questions questions={questions} />
     </div>
   );
 }
