@@ -3,7 +3,7 @@ import axios from 'axios';
 import Questions from './components/Questions';
 
 function App() {
-  const [questions, setQuestions] = useState();
+  const [questions, setQuestions] = useState([]);
 
   useEffect(() => {
     axios
