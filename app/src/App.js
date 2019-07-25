@@ -7,7 +7,7 @@ function App() {
 
   useEffect(() => {
     axios
-      .get('https://opentdb.com/api.php?amount=50&category=21')
+      .get('https://opentdb.com/api.php?amount=50')
       .then(res => {
         console.log('RESPONSE', res.data);
         setQuestions(res.data.results);
